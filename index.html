@@ -1,36 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trevor Bowers | WDD 131</title>
+    <title>WDD 131 – Dynamic Web Fundamentals – Trevor Bowers</title>
     <meta name="description"
-      content="This is Trevor Bowers's WDD 131 course home page.">
+        content="WDD 131 – Dynamic Web Fundamentals, Trevor Bowers, learning dynamic web development, HTML, CSS, JavaScript">
     <meta name="author" content="Trevor Bowers">
+
     <link rel="stylesheet" href="styles/base.css">
+
+    <script src="scripts/getdates.js" defer></script>
 </head>
 <body>
     <header>
-        <span id="course-title">WDD 131 - Dynamic Web Fundamentals</span>
+        <span id="course-title">WDD 131 – Dynamic Web Fundamentals</span>
         <nav class="socialmedia">
-            <a href="www.linkedin.com/in/trevor-bowers-223b56148">
-                <img src="images/linkedin_logo.png" alt="Trevor Bowers Linkedin page">
+            <a href="https://www.linkedin.com/in/trevor-bowers-223b56148">
+                <img src="images/linkedin_logo.png" alt="Trevor Bowers LinkedIn page">
             </a>
             <a href="https://byupw.instructure.com/">
                 <img src="images/canvas.png" alt="Trevor Bowers Canvas page">
             </a>
-            <a href=" https://www.churchofjesuschrist.org/study/scriptures/bofm/alma/26?lang=eng&id=p27#p27">
-                <img src="images/scripture.png" alt="favorite scripture page">
+            <a href="https://www.churchofjesuschrist.org/study/scriptures/bofm/alma/26?lang=eng&id=p27#p27">
+                <img src="images/scripture.png" alt="Favorite scripture page">
             </a>
-            <a href="https://cliffordgarstang.com/wp-content/uploads/2013/01/Work_in_progress.png">
-                <img src="images/final_project.png" alt="Final Project">
+            <a href="images/final_project.png">
+                <img src="images/final_project.png" alt="Final Project folder">
             </a>
         </nav>
     </header>
+
     <main>
+        <h1>Trevor Bowers</h1>
+
+       <section class="card">
+         <h2>About Me</h2>
+         <img src="images/about_me.jpg" alt="Trevor Bowers portrait">
+         <p>Hello! My name is Trevor Bowers. I am learning dynamic web fundamentals. This section contains a brief overview of my skills and interests in web development.</p>
+        </section>
+
+        <section class="card">
+            <h2>Location</h2>
+            <img src="images/arkansas.jpg" alt="Arkansas landscape">
+            <p>I live in Arkansas. I enjoy technology, programming, and good books.</p>
+        </section>
+
     </main>
+
     <footer>
-        <p>&copy; 2026 Trevor Bowers. All rights reserved.</p>
+        <p>&copy; <span id="currentyear"></span> Trevor Bowers. Arkansas, USA.</p>
+        <p id="lastModified"></p>
     </footer>
+
+   
 </body>
 </html>
