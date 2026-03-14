@@ -1,5 +1,5 @@
 body{
-font-family: 'Roboto', sans-serif;
+font-family:'Roboto', sans-serif;
 margin:0;
 }
 
@@ -23,7 +23,7 @@ border:none;
 color:white;
 }
 
-#navlist{
+.navigation{
 list-style:none;
 display:none;
 flex-direction:column;
@@ -31,15 +31,19 @@ padding:0;
 margin:0;
 }
 
-#navlist li a{
+.navigation li a{
 display:block;
 padding:1rem;
 text-decoration:none;
 color:white;
 }
 
-#navlist li a:hover{
+.navigation li a:hover{
 background:#34495e;
+}
+
+.open{
+display:flex;
 }
 
 main{
@@ -48,7 +52,7 @@ margin:0 auto;
 padding:1rem;
 }
 
-section{
+.gallery{
 display:grid;
 grid-template-columns:1fr;
 gap:1rem;

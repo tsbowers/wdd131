@@ -1,20 +1,21 @@
 const menuButton = document.querySelector("#menu");
-const navList = document.querySelector("#navlist");
+const navigation = document.querySelector(".navigation");
 
-menuButton.addEventListener("click", function () {
+menuButton.addEventListener("click", function(){
 
-if (navList.style.display === "flex") {
-navList.style.display = "none";
-menuButton.textContent = "☰";
-}
-else {
-navList.style.display = "flex";
+navigation.classList.toggle("open");
+
+if(menuButton.textContent === "☰"){
 menuButton.textContent = "X";
+}
+else{
+menuButton.textContent = "☰";
 }
 
 });
 
-document.querySelector("#year").textContent = new Date().getFullYear();
+document.querySelector("#year").textContent =
+new Date().getFullYear();
 
 document.querySelector("#lastModified").textContent =
 "Last Modified: " + document.lastModified;
