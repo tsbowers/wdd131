@@ -1,16 +1,16 @@
-@media (min-width: 768px) {
+@media (min-width:768px){
 
-#menu {
+#menu{
 display:none;
 }
 
-.navigation {
+#navlist{
 display:flex;
 flex-direction:row;
 }
 
-.gallery {
-grid-template-columns:repeat(3, 1fr);
+section{
+grid-template-columns:repeat(3,1fr);
 }
 
 }

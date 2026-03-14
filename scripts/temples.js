@@ -1,14 +1,17 @@
 const menuButton = document.querySelector("#menu");
-const navigation = document.querySelector(".navigation");
+const navList = document.querySelector("#navlist");
 
-menuButton.addEventListener("click", () => {
-navigation.classList.toggle("show");
+menuButton.addEventListener("click", function () {
 
-if(menuButton.textContent === "☰"){
-menuButton.textContent = "X";
-} else {
+if (navList.style.display === "flex") {
+navList.style.display = "none";
 menuButton.textContent = "☰";
 }
+else {
+navList.style.display = "flex";
+menuButton.textContent = "X";
+}
+
 });
 
 document.querySelector("#year").textContent = new Date().getFullYear();
