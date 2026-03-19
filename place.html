@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>United States</title>
+    <link rel="stylesheet" href="css/place.css">
+    <script src="js/place.js" defer></script>
+</head>
+<body>
+
+<header>
+    <h1>United States</h1>
+</header>
+
+<section class="hero">
+  <picture>
+    <source srcset="images/hero-large.webp" media="(min-width: 768px)">
+    <img src="images/hero-small.webp" alt="Beautiful landscape of the United States">
+  </picture>
+  <p class="credit">
+    Photo by <a href="https://unsplash.com/@wanderingcrow" target="_blank">Perry Kibler</a> on 
+    <a href="https://unsplash.com" target="_blank">Unsplash</a>
+  </p>
+</section>
+
+<section class="info">
+    <h2>About</h2>
+    <p>
+        The United States is a diverse country with landscapes ranging from mountains and forests to deserts and coastlines. It is known for its cultural influence, natural beauty, and major cities.
+    </p>
+</section>
+
+<section class="weather">
+    <h2>
+        Weather
+        <img src="images/weather.svg" alt="Sunny weather icon" class="weather-icon">
+    </h2>
+    <p>Temperature: <span id="temp">8°C</span></p>
+    <p>Wind Speed: <span id="wind">15 km/h</span></p>
+    <p>Wind Chill: <span id="windChill">N/A</span></p>
+</section>
+
+<footer>
+    &copy; <span id="year"></span> | Last modified: <span id="lastModified"></span>
+</footer>
+
+</body>
+</html>
