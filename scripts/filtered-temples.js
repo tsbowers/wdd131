@@ -3,9 +3,7 @@ const navigation = document.querySelector(".navigation");
 
 menuButton.addEventListener("click", () => {
   navigation.classList.toggle("open");
-
-  menuButton.textContent =
-    menuButton.textContent === "☰" ? "X" : "☰";
+  menuButton.textContent = menuButton.textContent === "☰" ? "X" : "☰";
 });
 
 const temples = [
@@ -65,7 +63,6 @@ const temples = [
     imageUrl:
       "https://content.churchofjesuschrist.org/templesldsorg/bc/Temples/photo-galleries/mexico-city-mexico/400x250/mexico-city-temple-exterior-1518361-wallpaper.jpg"
   },
-
   {
     templeName: "Rome Italy",
     location: "Rome, Italy",
@@ -96,11 +93,9 @@ const gallery = document.querySelector("#gallery");
 
 function displayTemples(list) {
   gallery.innerHTML = "";
-
   list.forEach(temple => {
     const card = document.createElement("section");
     card.classList.add("card");
-
     card.innerHTML = `
       <h2>${temple.templeName}</h2>
       <p><strong>Location:</strong> ${temple.location}</p>
@@ -108,7 +103,6 @@ function displayTemples(list) {
       <p><strong>Area:</strong> ${temple.area.toLocaleString()} sq ft</p>
       <img loading="lazy" src="${temple.imageUrl}" alt="${temple.templeName}">
     `;
-
     gallery.appendChild(card);
   });
 }
@@ -116,29 +110,21 @@ function displayTemples(list) {
 function filterTemples(filter) {
   const result = temples.filter(t => {
     const year = parseInt(t.dedicated.split(",")[0]);
-
     switch (filter) {
-      case "old":
-        return year < 1900;
-      case "new":
-        return year > 2000;
-      case "large":
-        return t.area > 90000;
-      case "small":
-        return t.area < 10000;
-      default:
-        return true;
+      case "old": return year < 1900;
+      case "new": return year > 2000;
+      case "large": return t.area > 90000;
+      case "small": return t.area < 10000;
+      default: return true;
     }
   });
-
   displayTemples(result);
 }
 
 document.querySelectorAll(".navigation a").forEach(link => {
-  link.addEventListener("click", (e) => {
+  link.addEventListener("click", e => {
     e.preventDefault();
-    const filter = link.dataset.filter;
-    filterTemples(filter);
+    filterTemples(link.dataset.filter);
   });
 });
 
