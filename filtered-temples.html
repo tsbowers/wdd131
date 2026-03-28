@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Filtered Temples</title>
+
+  <meta name="description" content="WDD 131 Filtered Temple Album">
+  <meta name="author" content="Trevor Bowers">
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/filtered-temples.css">
+  <link rel="stylesheet" href="styles/filtered-temples-large.css">
+
+  <script src="scripts/filtered-temples.js" defer></script>
+</head>
+
+<body>
+
+<header>
+  <h2>Temple Album</h2>
+
+  <button id="menu">☰</button>
+
+  <nav>
+    <ul class="navigation">
+      <li><a href="#" data-filter="home">Home</a></li>
+      <li><a href="#" data-filter="old">Old</a></li>
+      <li><a href="#" data-filter="new">New</a></li>
+      <li><a href="#" data-filter="large">Large</a></li>
+      <li><a href="#" data-filter="small">Small</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>Temple Gallery</h1>
+
+  <section id="gallery" class="gallery"></section>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> | Trevor Bowers | WDD 131</p>
+  <p id="lastModified"></p>
+</footer>
+
+</body>
+</html>
