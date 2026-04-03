@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Review Form</title>
+  <link rel="stylesheet" href="styles/form.css">
+</head>
+<body>
+  <header>
+    <h1>Product Review</h1>
+    <p>Share your experience with one of our products</p>
+  </header>
+
+  <main>
+    <form method="get" action="review.html">
+
+      <!-- Product Name -->
+      <div class="form-group">
+        <label for="product-name">Product Name</label>
+        <select id="product-name" name="productName" required>
+          <option value="" disabled selected>Select a Product ...</option>
+        </select>
+      </div>
+
+      <!-- Overall Rating -->
+      <fieldset class="form-group rating-group">
+        <legend>Overall Rating</legend>
+        <div class="stars">
+          <input type="radio" id="star1" name="rating" value="1" required>
+          <label for="star1">&#9733;</label>
+
+          <input type="radio" id="star2" name="rating" value="2">
+          <label for="star2">&#9733;</label>
+
+          <input type="radio" id="star3" name="rating" value="3">
+          <label for="star3">&#9733;</label>
+
+          <input type="radio" id="star4" name="rating" value="4">
+          <label for="star4">&#9733;</label>
+
+          <input type="radio" id="star5" name="rating" value="5">
+          <label for="star5">&#9733;</label>
+        </div>
+      </fieldset>
+
+      <!-- Date of Installation -->
+      <div class="form-group">
+        <label for="install-date">Date of Installation</label>
+        <input type="date" id="install-date" name="installDate" required>
+      </div>
+
+      <!-- Useful Features -->
+      <fieldset class="form-group checkbox-group">
+        <legend>Useful Features</legend>
+        <div class="checkbox-item">
+          <input type="checkbox" id="feature-easy" name="features" value="easy-install">
+          <label for="feature-easy">Easy Installation</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="feature-durable" name="features" value="durability">
+          <label for="feature-durable">Durability</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="feature-performance" name="features" value="performance">
+          <label for="feature-performance">Performance</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="feature-value" name="features" value="value">
+          <label for="feature-value">Value for Money</label>
+        </div>
+        <div class="checkbox-item">
+          <input type="checkbox" id="feature-design" name="features" value="design">
+          <label for="feature-design">Design</label>
+        </div>
+      </fieldset>
+
+      <!-- Written Review -->
+      <div class="form-group">
+        <label for="written-review">Written Review</label>
+        <textarea id="written-review" name="writtenReview" rows="5" placeholder="Share your thoughts about this product..."></textarea>
+      </div>
+
+      <!-- User Name -->
+      <div class="form-group">
+        <label for="user-name">Your Name <span class="optional">(optional)</span></label>
+        <input type="text" id="user-name" name="userName" placeholder="Enter your name">
+      </div>
+
+      <!-- Submit -->
+      <div class="form-group">
+        <input type="submit" value="Submit Review">
+      </div>
+
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 WDD131 | Product Review</p>
+  </footer>
+
+  <script src="scripts/form.js"></script>
+</body>
+</html>
