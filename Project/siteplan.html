@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utah Vacation Planner – Site Plan</title>
+
+  <!-- Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #4A5E4D;     /* Ranger Green */
+      --secondary: #8A6E4B;   /* Ranger Hat Brown */
+      --accent: #A3A380;      /* Sagebrush */
+      --background: #EDE6D6;  /* Sand Dune */
+      --text-dark: #2C3A32;   /* Dark Spruce */
+    }
+
+    body {
+      font-family: "Open Sans", sans-serif;
+      background: var(--background);
+      color: var(--text-dark);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      font-family: "Merriweather", serif;
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    header {
+      border-bottom: 5px solid var(--secondary);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+    }
+
+    section {
+      background: white;
+      padding: 20px;
+      border-left: 6px solid var(--accent);
+      margin-bottom: 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    pre {
+      background: #f7f4ed;
+      border: 1px solid var(--secondary);
+      padding: 15px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+
+    code {
+      background: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Utah Vacation Planner – Site Plan</h1>
+    <p>WDD 131 – Project Planning Document</p>
+  </header>
+
+  <!-- SITE NAME -->
+  <section>
+    <h2>Site Name</h2>
+    <p><strong>Utah Vacation Planner</strong></p>
+    <p>
+      This name was chosen because the site helps users explore Utah's best destinations 
+      and plan their adventure with a bucket list and interactive map.
+    </p>
+  </section>
+
+  <!-- SITE PURPOSE -->
+  <section>
+    <h2>Site Purpose</h2>
+    <p>
+      The purpose of this website is to be a simple trip planner.
+      for Utah visitors. The site will offer:
+    </p>
+    <ul>
+      <li>Highlights of Utah's major nature destinations</li>
+      <li>A customizable bucket list that can be saved</li>
+      <li>An interactive map to plan routes and combine locations</li>
+      <li>Tips for outdoor travel in Utah</li>
+    </ul>
+  </section>
+
+  <!-- SCENARIOS -->
+  <section>
+    <h2>Scenarios</h2>
+    <ul>
+      <li>“What are the must-see places if I'm visiting Utah for the first time?”</li>
+      <li>“How can I build and save my own Utah outdoor adventure bucket list?”</li>
+    </ul>
+  </section>
+
+  <!-- COLOR SCHEME -->
+  <section>
+    <h2>Color Scheme</h2>
+
+    <p>The website will use a National Park–style ranger color palette:</p>
+
+    <ul>
+      <li><strong>Primary (Headings):</strong> Ranger Green – <code>#4A5E4D</code></li>
+      <li><strong>Secondary (Borders/Highlights):</strong> Ranger Hat Brown – <code>#8A6E4B</code></li>
+      <li><strong>Accent:</strong> Sagebrush – <code>#A3A380</code></li>
+      <li><strong>Background:</strong> Sand Dune – <code>#EDE6D6</code></li>
+      <li><strong>Text:</strong> Dark Spruce – <code>#2C3A32</code></li>
+    </ul>
+
+    <p>This site plan document uses these colors in the header, borders, background, and headings.</p>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section>
+    <h2>Typography</h2>
+    <ul>
+      <li><strong>Heading Font:</strong> Merriweather (serif, traditional outdoor guide feel)</li>
+      <li><strong>Body Font:</strong> Open Sans (clean and readable)</li>
+    </ul>
+    <p>These fonts appear throughout this document.</p>
+  </section>
+
+  <!-- WIREFRAMES -->
+  <section>
+    <h2>Wireframes</h2>
+
+    <h3>Mobile Wireframe</h3>
+    <pre>
++------------------------+
+|        HEADER          |
+|------------------------|
+|    Hamburger Menu      |
+|------------------------|
+|      Hero Image        |
+|------------------------|
+|  Featured Destinations |
+|------------------------|
+|  Add to Bucket List    |
+|------------------------|
+|         Footer         |
++------------------------+
+    </pre>
+
+    <h3>Desktop Wireframe</h3>
+    <pre>
++--------------------------------------------------------+
+|                        HEADER                           |
+|--------------------------------------------------------|
+|  NAV   |       HERO IMAGE + Tagline                    |
+|        |-----------------------------------------------|
+|        | Featured Destinations (grid)                  |
+|--------------------------------------------------------|
+|                Bucket List Section                     |
+|--------------------------------------------------------|
+|                         FOOTER                         |
++--------------------------------------------------------+
+    </pre>
+
+    <p>These represent the homepage layout at mobile and desktop sizes.</p>
+  </section>
+
+</body>
+</html>
