@@ -1,0 +1,43 @@
+<html lang="en">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="bucketlist.html">Bucket List</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="references.html">References</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1>Your Bucket List</h1>
+
+        <section>
+            <h2>Add a Custom Destination</h2>
+            <form id="custom-form">
+                <label for="custom-input">Destination Name</label>
+                <input id="custom-input" type="text" required>
+                <button type="submit">Add</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Progress</h2>
+            <div class="progress">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+            <p id="progress-label">0 of 0 completed</p>
+        </section>
+
+        <section>
+            <h2>Saved Destinations</h2>
+            <ul id="full-list"></ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Adventure Explorer | <a href="references.html">References</a></p>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>

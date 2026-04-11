@@ -1,1 +1,0 @@
-For my project I would like to make an interactive bucket list for Utah. On one page I would have an overview of things to do, and add them to the list. The last page would be the bucket list where you can mark when its done, and see what is left. The last page would be a map with the locations on it to help plan out the trip if you are going to do multiple in one trip.
