@@ -26,11 +26,9 @@ const presetLocations = [
 
 function getBucketList() {
   let storedList = localStorage.getItem(STORAGE_KEY);
-
   if (storedList) {
     return JSON.parse(storedList);
   }
-
   return [];
 }
 
@@ -57,14 +55,13 @@ function addItem(name, type, region) {
 
   let list = getBucketList();
 
-  let newItem = {
+  list.push({
     name: name.trim(),
     type: type,
     region: region,
     visited: false
-  };
+  });
 
-  list.push(newItem);
   saveBucketList(list);
   return true;
 }
@@ -84,9 +81,8 @@ function toggleVisited(index) {
 function createAddButton(item) {
   let button = document.createElement("button");
   button.type = "button";
-  button.classList.add("btn-add");
+  button.className = "btn-add";
   button.textContent = "Add";
-  button.setAttribute("aria-label", `Add ${item.name} to bucket list`);
 
   if (isDuplicate(item.name)) {
     button.textContent = "Added";
@@ -108,8 +104,7 @@ function createAddButton(item) {
 }
 
 function renderHomeOptions(regionName, listId) {
-  const ul = document.getElementById(listId);
-
+  let ul = document.getElementById(listId);
   if (!ul) {
     return;
   }
@@ -119,10 +114,10 @@ function renderHomeOptions(regionName, listId) {
   for (let i = 0; i < presetLocations.length; i++) {
     if (presetLocations[i].region === regionName) {
       let li = document.createElement("li");
-      li.classList.add("option-item");
+      li.className = "option-item";
 
       let nameSpan = document.createElement("span");
-      nameSpan.classList.add("option-name");
+      nameSpan.className = "option-name";
       nameSpan.textContent = presetLocations[i].name;
 
       let addButton = createAddButton(presetLocations[i]);
@@ -135,8 +130,7 @@ function renderHomeOptions(regionName, listId) {
 }
 
 function renderRegion(regionName, listId) {
-  const ul = document.getElementById(listId);
-
+  let ul = document.getElementById(listId);
   if (!ul) {
     return;
   }
@@ -151,7 +145,6 @@ function renderRegion(regionName, listId) {
       foundItems = true;
 
       let li = document.createElement("li");
-
       if (list[i].visited) {
         li.classList.add("visited");
       }
@@ -167,25 +160,24 @@ function renderRegion(regionName, listId) {
       });
 
       let info = document.createElement("div");
-      info.classList.add("item-info");
+      info.className = "item-info";
 
       let nameSpan = document.createElement("span");
-      nameSpan.classList.add("item-name");
+      nameSpan.className = "item-name";
       nameSpan.textContent = list[i].name;
 
       let metaSpan = document.createElement("span");
-      metaSpan.classList.add("item-meta");
-      metaSpan.textContent = `${list[i].type} | ${list[i].region} Utah`;
+      metaSpan.className = "item-meta";
+      metaSpan.textContent = list[i].type + " | " + list[i].region + " Utah";
 
       info.appendChild(nameSpan);
       info.appendChild(metaSpan);
 
       let removeBtn = document.createElement("button");
       removeBtn.type = "button";
-      removeBtn.classList.add("remove-btn");
+      removeBtn.className = "remove-btn";
       removeBtn.textContent = "✕";
       removeBtn.dataset.index = i;
-      removeBtn.setAttribute("aria-label", `Remove ${list[i].name}`);
 
       removeBtn.addEventListener("click", function () {
         removeItem(Number(this.dataset.index));
@@ -201,7 +193,10 @@ function renderRegion(regionName, listId) {
   }
 
   if (!foundItems) {
-    ul.innerHTML = `<li class="empty-msg">No ${regionName.toLowerCase()} Utah locations added yet.</li>`;
+    let li = document.createElement("li");
+    li.className = "empty-msg";
+    li.textContent = "No " + regionName.toLowerCase() + " Utah locations added yet.";
+    ul.appendChild(li);
   }
 }
 
@@ -222,12 +217,12 @@ function updateProgress() {
     percent = Math.round((visitedCount / total) * 100);
   }
 
-  const progressBar = document.getElementById("progress-bar");
-  const progressLabel = document.getElementById("progress-label");
+  let progressBar = document.getElementById("progress-bar");
+  let progressLabel = document.getElementById("progress-label");
 
   if (progressBar && progressLabel) {
-    progressBar.style.width = `${percent}%`;
-    progressLabel.textContent = `${visitedCount} of ${total} visited (${percent}%)`;
+    progressBar.style.width = percent + "%";
+    progressLabel.textContent = visitedCount + " of " + total + " visited (" + percent + "%)";
   }
 }
 
@@ -248,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function () {
   renderHomePage();
   renderBucketList();
 
-  const clearBtn = document.getElementById("clear-btn");
+  let clearBtn = document.getElementById("clear-btn");
 
   if (clearBtn) {
     clearBtn.addEventListener("click", function () {
