@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Utah Bucket List</title>
+
+  <meta name="description" content="WDD 131 Utah Bucket List by Trevor Bowers. View saved Utah parks and temples by northern, central, and southern Utah and track visited locations.">
+  <meta name="author" content="Trevor Bowers">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/styles.css">
+  <script src="scripts/script.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a class="site-logo" href="index.html">Utah <span>Vacation</span> Planner</a>
+
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="hamburger" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="bucketlist.html" class="active">Bucket List</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="references.html">References</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <section class="page-header">
+      <h1>My Utah Bucket List</h1>
+      <p>These are the places you added from the home page.</p>
+    </section>
+
+    <section class="progress-section">
+      <h2>Travel Progress</h2>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <p class="progress-label" id="progress-label">0 of 0 visited (0%)</p>
+      <button type="button" class="btn-clear" id="clear-btn">Clear All</button>
+    </section>
+
+    <section class="region-section">
+      <h2>North</h2>
+      <ul id="northern-list" class="bucket-list"></ul>
+    </section>
+
+    <section class="region-section">
+      <h2>Central</h2>
+      <ul id="central-list" class="bucket-list"></ul>
+    </section>
+
+    <section class="region-section">
+      <h2>South</h2>
+      <ul id="southern-list" class="bucket-list"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Utah Vacation Planner | WDD 131/p>
+    <p><a href="references.html">References</a></p>
+  </footer>
+</body>
+</html>

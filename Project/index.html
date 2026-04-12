@@ -1,43 +1,72 @@
-<html lang="en">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="bucketlist.html">Bucket List</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="references.html">References</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <main>
-        <h1>Your Bucket List</h1>
+  <title>Utah Vacation Planner</title>
 
-        <section>
-            <h2>Add a Custom Destination</h2>
-            <form id="custom-form">
-                <label for="custom-input">Destination Name</label>
-                <input id="custom-input" type="text" required>
-                <button type="submit">Add</button>
-            </form>
-        </section>
+  <meta name="description" content="WDD 131 Utah Vacation Planner by Trevor Bowers. Explore Utah parks and temples and add places to a regional bucket list.">
+  <meta name="author" content="Trevor Bowers">
 
-        <section>
-            <h2>Progress</h2>
-            <div class="progress">
-                <div id="progress-bar" class="progress-bar"></div>
-            </div>
-            <p id="progress-label">0 of 0 completed</p>
-        </section>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
-        <section>
-            <h2>Saved Destinations</h2>
-            <ul id="full-list"></ul>
-        </section>
-    </main>
+  <link rel="stylesheet" href="styles/styles.css">
+  <script src="scripts/script.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a class="site-logo" href="index.html">Utah <span>Vacation</span> Planner</a>
 
-    <footer>
-        <p>&copy; 2024 Adventure Explorer | <a href="references.html">References</a></p>
-    </footer>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="hamburger" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
 
-    <script src="scripts/script.js"></script>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="bucketlist.html">Bucket List</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="references.html">References</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Utah Bucket List Builder</h1>
+        <p>Add Utah parks and temples to your bucket list by region.</p>
+        <a href="bucketlist.html" class="btn">View My Bucket List</a>
+      </div>
+    </section>
+
+    <section class="option-section">
+      <h2>--------- Northern Utah ---------</h2>
+      <ul id="northern-options" class="option-list"></ul>
+    </section>
+
+    <section class="option-section">
+      <h2>--------- Central Utah ---------</h2>
+      <ul id="central-options" class="option-list"></ul>
+    </section>
+
+    <section class="option-section">
+      <h2>--------- Southern Utah ---------</h2>
+      <ul id="southern-options" class="option-list"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Utah Vacation Planner | WDD 131</p>
+    <p><a href="references.html">References</a></p>
+  </footer>
 </body>
 </html>

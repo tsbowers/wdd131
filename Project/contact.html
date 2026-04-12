@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Contact | Utah Vacation Planner</title>
+
+  <meta name="description" content="WDD 131 Utah Vacation Planner contact page by Trevor Bowers. Share Utah travel ideas and website feedback.">
+  <meta name="author" content="Trevor Bowers">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a class="site-logo" href="index.html">Utah <span>Vacation</span> Planner</a>
+
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="hamburger" aria-label="Open navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="bucketlist.html">Bucket List</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><a href="references.html">References</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <section class="page-header">
+      <h1>Contact</h1>
+      <p>Share a favorite Utah destination or send feedback.</p>
+    </section>
+
+    <section class="contact-card">
+      <form class="contact-form" action="#" method="get">
+        <div class="form-row">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-row">
+          <label for="topic">Topic</label>
+          <select id="topic" name="topic" required>
+            <option value="">Select a topic</option>
+            <option value="Travel Idea">Travel Idea</option>
+            <option value="Bucket List Help">Bucket List Help</option>
+            <option value="Website Feedback">Website Feedback</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+        </div>
+
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Utah Vacation Planner | WDD 131</p>
+    <p><a href="references.html">References</a></p>
+  </footer>
+</body>
+</html>

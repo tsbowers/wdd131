@@ -1,42 +1,264 @@
-const list = JSON.parse(localStorage.getItem('bucketList')) || [];
+const STORAGE_KEY = "utahBucketList";
 
-function saveList() {
-    localStorage.setItem('bucketList', JSON.stringify(list));
+const presetLocations = [
+  { name: "Antelope Island State Park", type: "State Park", region: "Northern" },
+  { name: "Bear Lake State Park", type: "State Park", region: "Northern" },
+  { name: "Great Salt Lake State Park", type: "State Park", region: "Northern" },
+  { name: "Logan Utah Temple", type: "Temple", region: "Northern" },
+  { name: "Ogden Utah Temple", type: "Temple", region: "Northern" },
+  { name: "Payson Utah Temple", type: "Temple", region: "Northern" },
+  { name: "Vernal Utah Temple", type: "Temple", region: "Northern" },
+  { name: "Wasatch Mountain State Park", type: "State Park", region: "Northern" },
+
+  { name: "Capitol Reef National Park", type: "National Park", region: "Central" },
+  { name: "Goblin Valley State Park", type: "State Park", region: "Central" },
+  { name: "Yuba State Park", type: "State Park", region: "Central" },
+
+  { name: "Arches National Park", type: "National Park", region: "Southern" },
+  { name: "Bryce Canyon National Park", type: "National Park", region: "Southern" },
+  { name: "Canyonlands National Park", type: "National Park", region: "Southern" },
+  { name: "Dead Horse Point State Park", type: "State Park", region: "Southern" },
+  { name: "Kodachrome Basin State Park", type: "State Park", region: "Southern" },
+  { name: "Snow Canyon State Park", type: "State Park", region: "Southern" },
+  { name: "St. George Utah Temple", type: "Temple", region: "Southern" },
+  { name: "Zion National Park", type: "National Park", region: "Southern" }
+];
+
+function getBucketList() {
+  let storedList = localStorage.getItem(STORAGE_KEY);
+
+  if (storedList) {
+    return JSON.parse(storedList);
+  }
+
+  return [];
 }
 
-function renderFullList() {
-    const ul = document.getElementById('full-list');
-    if (!ul) return;
+function saveBucketList(list) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+}
 
-    ul.innerHTML = list.map(item => `
-        <li>
-            ${item.name}
-            <button class="remove" data-name="${item.name}">Remove</button>
-        </li>
-    `).join('');
+function isDuplicate(name) {
+  let list = getBucketList();
 
-    document.querySelectorAll('.remove').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const name = btn.dataset.name;
-            const index = list.findIndex(i => i.name === name);
-            if (index !== -1) list.splice(index, 1);
-            saveList();
-            renderFullList();
-            updateProgress();
-        });
-    });
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].name.toLowerCase() === name.toLowerCase()) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function addItem(name, type, region) {
+  if (name.trim() === "" || isDuplicate(name)) {
+    return false;
+  }
+
+  let list = getBucketList();
+
+  let newItem = {
+    name: name.trim(),
+    type: type,
+    region: region,
+    visited: false
+  };
+
+  list.push(newItem);
+  saveBucketList(list);
+  return true;
+}
+
+function removeItem(index) {
+  let list = getBucketList();
+  list.splice(index, 1);
+  saveBucketList(list);
+}
+
+function toggleVisited(index) {
+  let list = getBucketList();
+  list[index].visited = !list[index].visited;
+  saveBucketList(list);
+}
+
+function createAddButton(item) {
+  let button = document.createElement("button");
+  button.type = "button";
+  button.classList.add("btn-add");
+  button.textContent = "Add";
+  button.setAttribute("aria-label", `Add ${item.name} to bucket list`);
+
+  if (isDuplicate(item.name)) {
+    button.textContent = "Added";
+    button.disabled = true;
+  }
+
+  button.addEventListener("click", function () {
+    let added = addItem(item.name, item.type, item.region);
+
+    if (added) {
+      button.textContent = "Added";
+      button.disabled = true;
+    } else {
+      alert("That location is already in your bucket list.");
+    }
+  });
+
+  return button;
+}
+
+function renderHomeOptions(regionName, listId) {
+  const ul = document.getElementById(listId);
+
+  if (!ul) {
+    return;
+  }
+
+  ul.innerHTML = "";
+
+  for (let i = 0; i < presetLocations.length; i++) {
+    if (presetLocations[i].region === regionName) {
+      let li = document.createElement("li");
+      li.classList.add("option-item");
+
+      let nameSpan = document.createElement("span");
+      nameSpan.classList.add("option-name");
+      nameSpan.textContent = presetLocations[i].name;
+
+      let addButton = createAddButton(presetLocations[i]);
+
+      li.appendChild(nameSpan);
+      li.appendChild(addButton);
+      ul.appendChild(li);
+    }
+  }
+}
+
+function renderRegion(regionName, listId) {
+  const ul = document.getElementById(listId);
+
+  if (!ul) {
+    return;
+  }
+
+  let list = getBucketList();
+  ul.innerHTML = "";
+
+  let foundItems = false;
+
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].region === regionName) {
+      foundItems = true;
+
+      let li = document.createElement("li");
+
+      if (list[i].visited) {
+        li.classList.add("visited");
+      }
+
+      let checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = list[i].visited;
+      checkbox.dataset.index = i;
+
+      checkbox.addEventListener("change", function () {
+        toggleVisited(Number(this.dataset.index));
+        renderBucketList();
+      });
+
+      let info = document.createElement("div");
+      info.classList.add("item-info");
+
+      let nameSpan = document.createElement("span");
+      nameSpan.classList.add("item-name");
+      nameSpan.textContent = list[i].name;
+
+      let metaSpan = document.createElement("span");
+      metaSpan.classList.add("item-meta");
+      metaSpan.textContent = `${list[i].type} | ${list[i].region} Utah`;
+
+      info.appendChild(nameSpan);
+      info.appendChild(metaSpan);
+
+      let removeBtn = document.createElement("button");
+      removeBtn.type = "button";
+      removeBtn.classList.add("remove-btn");
+      removeBtn.textContent = "✕";
+      removeBtn.dataset.index = i;
+      removeBtn.setAttribute("aria-label", `Remove ${list[i].name}`);
+
+      removeBtn.addEventListener("click", function () {
+        removeItem(Number(this.dataset.index));
+        renderBucketList();
+        renderHomePage();
+      });
+
+      li.appendChild(checkbox);
+      li.appendChild(info);
+      li.appendChild(removeBtn);
+      ul.appendChild(li);
+    }
+  }
+
+  if (!foundItems) {
+    ul.innerHTML = `<li class="empty-msg">No ${regionName.toLowerCase()} Utah locations added yet.</li>`;
+  }
 }
 
 function updateProgress() {
-    const bar = document.getElementById('progress-bar');
-    const label = document.getElementById('progress-label');
-    if (!bar || !label) return;
+  let list = getBucketList();
+  let visitedCount = 0;
 
-    const completed = list.filter(item => item.completed).length;
-    const total = list.length;
-    const percentage = total > 0 ? (completed / total) * 100 : 0;
-    
-    bar.style.width = percentage + '%';
-    label.textContent = completed + '/' + total;
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].visited) {
+      visitedCount++;
+    }
+  }
+
+  let total = list.length;
+  let percent = 0;
+
+  if (total > 0) {
+    percent = Math.round((visitedCount / total) * 100);
+  }
+
+  const progressBar = document.getElementById("progress-bar");
+  const progressLabel = document.getElementById("progress-label");
+
+  if (progressBar && progressLabel) {
+    progressBar.style.width = `${percent}%`;
+    progressLabel.textContent = `${visitedCount} of ${total} visited (${percent}%)`;
+  }
 }
 
+function renderBucketList() {
+  renderRegion("Northern", "northern-list");
+  renderRegion("Central", "central-list");
+  renderRegion("Southern", "southern-list");
+  updateProgress();
+}
+
+function renderHomePage() {
+  renderHomeOptions("Northern", "northern-options");
+  renderHomeOptions("Central", "central-options");
+  renderHomeOptions("Southern", "southern-options");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  renderHomePage();
+  renderBucketList();
+
+  const clearBtn = document.getElementById("clear-btn");
+
+  if (clearBtn) {
+    clearBtn.addEventListener("click", function () {
+      let answer = confirm("Clear your entire bucket list?");
+
+      if (answer) {
+        saveBucketList([]);
+        renderBucketList();
+        renderHomePage();
+      }
+    });
+  }
+});
