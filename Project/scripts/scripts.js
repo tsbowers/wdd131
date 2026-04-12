@@ -3,11 +3,29 @@ const STORAGE_KEY = "utahBucketList";
 function getBucketList() {
   let stored = localStorage.getItem(STORAGE_KEY);
 
-  if (stored) {
-    return JSON.parse(stored);
+  if (!stored) {
+    return [];
   }
 
-  return [];
+  let list = JSON.parse(stored);
+
+  // Fix older saved versions if needed
+  for (let i = 0; i < list.length; i++) {
+    if (typeof list[i] === "string") {
+      list[i] = {
+        name: list[i],
+        type: "Other",
+        region: "Northern",
+        visited: false
+      };
+    }
+
+    if (list[i].visited === undefined) {
+      list[i].visited = false;
+    }
+  }
+
+  return list;
 }
 
 function saveBucketList(list) {
@@ -27,19 +45,20 @@ function itemExists(name) {
 }
 
 function addItem(name, type, region) {
-  if (itemExists(name)) {
+  if (!name || itemExists(name)) {
     return false;
   }
 
   let list = getBucketList();
 
-  list.push({
+  let item = {
     name: name,
     type: type,
     region: region,
     visited: false
-  });
+  };
 
+  list.push(item);
   saveBucketList(list);
   return true;
 }
@@ -59,17 +78,17 @@ function toggleVisited(index) {
 function updateAddButtons() {
   let buttons = document.querySelectorAll(".btn-add");
 
-  buttons.forEach(function (button) {
-    let name = button.dataset.name;
+  for (let i = 0; i < buttons.length; i++) {
+    let name = buttons[i].dataset.name;
 
     if (itemExists(name)) {
-      button.textContent = "Added";
-      button.disabled = true;
+      buttons[i].textContent = "Added";
+      buttons[i].disabled = true;
     } else {
-      button.textContent = "Add";
-      button.disabled = false;
+      buttons[i].textContent = "Add";
+      buttons[i].disabled = false;
     }
-  });
+  }
 }
 
 function renderRegion(regionName, listId) {
@@ -182,21 +201,22 @@ function renderBucketList() {
 document.addEventListener("DOMContentLoaded", function () {
   let addButtons = document.querySelectorAll(".btn-add");
 
-  addButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      let name = button.dataset.name;
-      let type = button.dataset.type;
-      let region = button.dataset.region;
+  for (let i = 0; i < addButtons.length; i++) {
+    addButtons[i].addEventListener("click", function () {
+      let name = this.dataset.name;
+      let type = this.dataset.type;
+      let region = this.dataset.region;
 
       let added = addItem(name, type, region);
 
-      if (!added) {
+      if (added) {
+        this.textContent = "Added";
+        this.disabled = true;
+      } else {
         alert("That location is already in your bucket list.");
       }
-
-      updateAddButtons();
     });
-  });
+  }
 
   updateAddButtons();
   renderBucketList();
