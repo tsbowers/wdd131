@@ -1,34 +1,12 @@
 const STORAGE_KEY = "utahBucketList";
 
-const presetLocations = [
-  { name: "Antelope Island State Park", type: "State Park", region: "Northern" },
-  { name: "Bear Lake State Park", type: "State Park", region: "Northern" },
-  { name: "Great Salt Lake State Park", type: "State Park", region: "Northern" },
-  { name: "Logan Utah Temple", type: "Temple", region: "Northern" },
-  { name: "Ogden Utah Temple", type: "Temple", region: "Northern" },
-  { name: "Payson Utah Temple", type: "Temple", region: "Northern" },
-  { name: "Vernal Utah Temple", type: "Temple", region: "Northern" },
-  { name: "Wasatch Mountain State Park", type: "State Park", region: "Northern" },
-
-  { name: "Capitol Reef National Park", type: "National Park", region: "Central" },
-  { name: "Goblin Valley State Park", type: "State Park", region: "Central" },
-  { name: "Yuba State Park", type: "State Park", region: "Central" },
-
-  { name: "Arches National Park", type: "National Park", region: "Southern" },
-  { name: "Bryce Canyon National Park", type: "National Park", region: "Southern" },
-  { name: "Canyonlands National Park", type: "National Park", region: "Southern" },
-  { name: "Dead Horse Point State Park", type: "State Park", region: "Southern" },
-  { name: "Kodachrome Basin State Park", type: "State Park", region: "Southern" },
-  { name: "Snow Canyon State Park", type: "State Park", region: "Southern" },
-  { name: "St. George Utah Temple", type: "Temple", region: "Southern" },
-  { name: "Zion National Park", type: "National Park", region: "Southern" }
-];
-
 function getBucketList() {
-  let storedList = localStorage.getItem(STORAGE_KEY);
-  if (storedList) {
-    return JSON.parse(storedList);
+  let stored = localStorage.getItem(STORAGE_KEY);
+
+  if (stored) {
+    return JSON.parse(stored);
   }
+
   return [];
 }
 
@@ -36,7 +14,7 @@ function saveBucketList(list) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
 }
 
-function isDuplicate(name) {
+function itemExists(name) {
   let list = getBucketList();
 
   for (let i = 0; i < list.length; i++) {
@@ -49,14 +27,14 @@ function isDuplicate(name) {
 }
 
 function addItem(name, type, region) {
-  if (name.trim() === "" || isDuplicate(name)) {
+  if (itemExists(name)) {
     return false;
   }
 
   let list = getBucketList();
 
   list.push({
-    name: name.trim(),
+    name: name,
     type: type,
     region: region,
     visited: false
@@ -78,59 +56,25 @@ function toggleVisited(index) {
   saveBucketList(list);
 }
 
-function createAddButton(item) {
-  let button = document.createElement("button");
-  button.type = "button";
-  button.className = "btn-add";
-  button.textContent = "Add";
+function updateAddButtons() {
+  let buttons = document.querySelectorAll(".btn-add");
 
-  if (isDuplicate(item.name)) {
-    button.textContent = "Added";
-    button.disabled = true;
-  }
+  buttons.forEach(function (button) {
+    let name = button.dataset.name;
 
-  button.addEventListener("click", function () {
-    let added = addItem(item.name, item.type, item.region);
-
-    if (added) {
+    if (itemExists(name)) {
       button.textContent = "Added";
       button.disabled = true;
     } else {
-      alert("That location is already in your bucket list.");
+      button.textContent = "Add";
+      button.disabled = false;
     }
   });
-
-  return button;
-}
-
-function renderHomeOptions(regionName, listId) {
-  let ul = document.getElementById(listId);
-  if (!ul) {
-    return;
-  }
-
-  ul.innerHTML = "";
-
-  for (let i = 0; i < presetLocations.length; i++) {
-    if (presetLocations[i].region === regionName) {
-      let li = document.createElement("li");
-      li.className = "option-item";
-
-      let nameSpan = document.createElement("span");
-      nameSpan.className = "option-name";
-      nameSpan.textContent = presetLocations[i].name;
-
-      let addButton = createAddButton(presetLocations[i]);
-
-      li.appendChild(nameSpan);
-      li.appendChild(addButton);
-      ul.appendChild(li);
-    }
-  }
 }
 
 function renderRegion(regionName, listId) {
   let ul = document.getElementById(listId);
+
   if (!ul) {
     return;
   }
@@ -138,13 +82,14 @@ function renderRegion(regionName, listId) {
   let list = getBucketList();
   ul.innerHTML = "";
 
-  let foundItems = false;
+  let found = false;
 
   for (let i = 0; i < list.length; i++) {
     if (list[i].region === regionName) {
-      foundItems = true;
+      found = true;
 
       let li = document.createElement("li");
+
       if (list[i].visited) {
         li.classList.add("visited");
       }
@@ -178,11 +123,12 @@ function renderRegion(regionName, listId) {
       removeBtn.className = "remove-btn";
       removeBtn.textContent = "✕";
       removeBtn.dataset.index = i;
+      removeBtn.setAttribute("aria-label", "Remove " + list[i].name);
 
       removeBtn.addEventListener("click", function () {
         removeItem(Number(this.dataset.index));
         renderBucketList();
-        renderHomePage();
+        updateAddButtons();
       });
 
       li.appendChild(checkbox);
@@ -192,7 +138,7 @@ function renderRegion(regionName, listId) {
     }
   }
 
-  if (!foundItems) {
+  if (!found) {
     let li = document.createElement("li");
     li.className = "empty-msg";
     li.textContent = "No " + regionName.toLowerCase() + " Utah locations added yet.";
@@ -202,11 +148,11 @@ function renderRegion(regionName, listId) {
 
 function updateProgress() {
   let list = getBucketList();
-  let visitedCount = 0;
+  let visited = 0;
 
   for (let i = 0; i < list.length; i++) {
     if (list[i].visited) {
-      visitedCount++;
+      visited++;
     }
   }
 
@@ -214,15 +160,15 @@ function updateProgress() {
   let percent = 0;
 
   if (total > 0) {
-    percent = Math.round((visitedCount / total) * 100);
+    percent = Math.round((visited / total) * 100);
   }
 
-  let progressBar = document.getElementById("progress-bar");
-  let progressLabel = document.getElementById("progress-label");
+  let bar = document.getElementById("progress-bar");
+  let label = document.getElementById("progress-label");
 
-  if (progressBar && progressLabel) {
-    progressBar.style.width = percent + "%";
-    progressLabel.textContent = visitedCount + " of " + total + " visited (" + percent + "%)";
+  if (bar && label) {
+    bar.style.width = percent + "%";
+    label.textContent = visited + " of " + total + " visited (" + percent + "%)";
   }
 }
 
@@ -233,26 +179,38 @@ function renderBucketList() {
   updateProgress();
 }
 
-function renderHomePage() {
-  renderHomeOptions("Northern", "northern-options");
-  renderHomeOptions("Central", "central-options");
-  renderHomeOptions("Southern", "southern-options");
-}
-
 document.addEventListener("DOMContentLoaded", function () {
-  renderHomePage();
+  let addButtons = document.querySelectorAll(".btn-add");
+
+  addButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      let name = button.dataset.name;
+      let type = button.dataset.type;
+      let region = button.dataset.region;
+
+      let added = addItem(name, type, region);
+
+      if (!added) {
+        alert("That location is already in your bucket list.");
+      }
+
+      updateAddButtons();
+    });
+  });
+
+  updateAddButtons();
   renderBucketList();
 
   let clearBtn = document.getElementById("clear-btn");
 
   if (clearBtn) {
     clearBtn.addEventListener("click", function () {
-      let answer = confirm("Clear your entire bucket list?");
+      let confirmed = confirm("Clear your entire bucket list?");
 
-      if (answer) {
+      if (confirmed) {
         saveBucketList([]);
         renderBucketList();
-        renderHomePage();
+        updateAddButtons();
       }
     });
   }
