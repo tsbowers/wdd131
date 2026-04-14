@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Share your experience visiting Utah and your thoughts on the Utah Vacation Planner website." />
+  <title>Reviews — Utah Vacation Planner</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- HEADER / NAV -->
+  <header>
+    <nav>
+      <a href="index.html" class="nav-logo">Utah Vacation Planner</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="bucketlist.html">Bucket List</a></li>
+        <li><a href="reviews.html" class="active">Reviews</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero" role="banner">
+    <h1>Share Your Experience</h1>
+    <p>Tell us about your Utah adventure or your thoughts on this site</p>
+  </div>
+
+  <main>
+
+    <!-- REVIEW FORM -->
+    <div class="review-form-wrap">
+      <div class="form-card">
+        <h2>Post a Review</h2>
+        <p class="form-intro">We'd love to hear from you! Share what you loved, what you'd recommend, or how we can improve this site.</p>
+
+        <form id="review-form" novalidate>
+
+          <div class="form-group">
+            <label for="reviewer-name">Your Name</label>
+            <input type="text" id="reviewer-name" name="reviewer-name" placeholder="e.g. Jane Smith" required autocomplete="name" />
+          </div>
+
+          <div class="form-group">
+            <label for="reviewer-email">Email Address</label>
+            <input type="email" id="reviewer-email" name="reviewer-email" placeholder="e.g. jane@example.com" required autocomplete="email" />
+          </div>
+
+          <div class="form-group">
+            <label for="visit-location">Favorite Place You Visited (optional)</label>
+            <input type="text" id="visit-location" name="visit-location" placeholder="e.g. Zion National Park" autocomplete="off" />
+          </div>
+
+          <div class="form-group">
+            <label>Rating</label>
+            <div class="star-rating" role="radiogroup" aria-label="Star rating">
+              <input type="radio" id="star5" name="rating" value="5" />
+              <label for="star5" aria-label="5 stars">&#9733;</label>
+              <input type="radio" id="star4" name="rating" value="4" />
+              <label for="star4" aria-label="4 stars">&#9733;</label>
+              <input type="radio" id="star3" name="rating" value="3" />
+              <label for="star3" aria-label="3 stars">&#9733;</label>
+              <input type="radio" id="star2" name="rating" value="2" />
+              <label for="star2" aria-label="2 stars">&#9733;</label>
+              <input type="radio" id="star1" name="rating" value="1" />
+              <label for="star1" aria-label="1 star">&#9733;</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="review-text">Your Review</label>
+            <textarea id="review-text" name="review-text" placeholder="Share your experience with Utah or this website..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn form-submit-btn">Submit Review</button>
+        </form>
+
+        <div id="form-message" role="alert" aria-live="assertive">
+          Thank you! Your review has been submitted.
+        </div>
+      </div>
+    </div>
+
+    <!-- PAST REVIEWS -->
+    <div class="reviews-section" role="region" aria-label="Submitted reviews">
+      <h2>Recent Reviews</h2>
+      <div id="reviews-list" aria-live="polite">
+        <!-- injected by JS -->
+      </div>
+      <p id="no-reviews-msg" style="color:#888; font-size:0.93rem; display:none;">No reviews yet. Be the first!</p>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Utah Vacation Planner - WDD 131 - <a href="references.html">References</a></p>
+  </footer>
+
+  <script src="reviews.js"></script>
+</body>
+</html>

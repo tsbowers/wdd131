@@ -1,78 +1,65 @@
-<!doctype html>
-<html lang="en-US">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Utah Bucket List</title>
-
-  <meta name="description" content="WDD 131 Utah Bucket List by Trevor Bowers. View saved Utah parks and temples by northern, central, and southern Utah and track visited locations.">
-  <meta name="author" content="Trevor Bowers">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="styles/styles.css">
-  <script src="scripts/script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browse Utah's national parks, state parks, and LDS temples by region. Save your favorites to your personal bucket list." />
+  <title>Bucket List — Utah Vacation Planner</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+  <!-- HEADER / NAV -->
   <header>
-    <div class="header-inner">
-      <a class="site-logo" href="index.html">Utah <span>Vacation</span> Planner</a>
-
-      <input type="checkbox" id="menu-toggle" class="menu-toggle">
-      <label for="menu-toggle" class="hamburger" aria-label="Open navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-
-      <nav aria-label="Main navigation">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="bucketlist.html" class="active">Bucket List</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="references.html">References</a></li>
-        </ul>
-      </nav>
-    </div>
+    <nav>
+      <a href="index.html" class="nav-logo">Utah Vacation Planner</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="bucketlist.html" class="active">Bucket List</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="page-main">
-    <section class="page-header">
-      <h1>My Utah Bucket List</h1>
-      <p>These are the places you added from the home page.</p>
-    </section>
+  <!-- PAGE HERO -->
+  <div class="page-hero" role="banner">
+    <h1>Utah Bucket List</h1>
+    <p>Browse parks and temples by region &mdash; save what you want to visit</p>
+  </div>
 
-    <section class="progress-section">
-      <h2>Travel Progress</h2>
-      <div class="progress-bar-wrap">
-        <div class="progress-bar" id="progress-bar"></div>
-      </div>
-      <p class="progress-label" id="progress-label">0 of 0 visited (0%)</p>
-      <button type="button" class="btn-clear" id="clear-btn">Clear All</button>
-    </section>
+  <main class="section">
 
-    <section class="region-section">
-      <h2>North</h2>
-      <ul id="northern-list" class="bucket-list"></ul>
-    </section>
+    <!-- SAVED LIST PANEL -->
+    <div class="saved-panel" role="region" aria-label="Your saved bucket list">
+      <h2>&#9733; My Bucket List (<span id="saved-count">0</span>)</h2>
+      <ul id="saved-list" aria-live="polite">
+        <li class="saved-empty" id="saved-empty-msg">No destinations saved yet. Click "Add" to start your list!</li>
+      </ul>
+      <button class="btn btn-outline" id="clear-list-btn" style="display:none;" aria-label="Clear all saved destinations">Clear All</button>
+    </div>
 
-    <section class="region-section">
-      <h2>Central</h2>
-      <ul id="central-list" class="bucket-list"></ul>
-    </section>
+    <!-- FILTER BAR -->
+    <div class="filter-bar" role="group" aria-label="Filter destinations">
+      <label>Filter by:</label>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="northern">Northern Utah</button>
+      <button class="filter-btn" data-filter="central">Central Utah</button>
+      <button class="filter-btn" data-filter="southern">Southern Utah</button>
+      <button class="filter-btn" data-filter="national">National Parks</button>
+      <button class="filter-btn" data-filter="state">State Parks</button>
+      <button class="filter-btn" data-filter="temple">Temples</button>
+    </div>
 
-    <section class="region-section">
-      <h2>South</h2>
-      <ul id="southern-list" class="bucket-list"></ul>
-    </section>
+    <!-- DESTINATION LIST — injected by JS -->
+    <div id="destinations-container" aria-live="polite"></div>
+
   </main>
 
+  <!-- FOOTER -->
   <footer>
-    <p>&copy; 2026 Utah Vacation Planner | WDD 131</p>
-    <p><a href="references.html">References</a></p>
+    <p>&copy; 2026 Utah Vacation Planner &mdash; WDD 131 &nbsp;|&nbsp; <a href="references.html">References</a></p>
   </footer>
+
+  <script src="bucketlist.js"></script>
 </body>
 </html>

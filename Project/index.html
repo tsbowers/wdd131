@@ -1,151 +1,64 @@
-<!doctype html>
-<html lang="en-US">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Utah Vacation Planner</title>
-
-  <meta name="description" content="WDD 131 Utah Vacation Planner by Trevor Bowers. Explore Utah parks and temples and add places to a regional bucket list.">
-  <meta name="author" content="Trevor Bowers">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="styles/styles.css">
-  <script src="scripts/script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Discover Utah's stunning national parks, state parks, and LDS temples. Plan your Utah adventure today." />
+  <meta author="Trevor Bowers" />
+  <meta title="Utah Vacation Planner - Explore Utah's National Parks, State Parks, and LDS Temples" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
+  <!-- HEADER / NAV -->
   <header>
-    <div class="header-inner">
-      <a class="site-logo" href="index.html">Utah <span>Vacation</span> Planner</a>
-
-      <input type="checkbox" id="menu-toggle" class="menu-toggle">
-      <label for="menu-toggle" class="hamburger" aria-label="Open navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-
-      <nav aria-label="Main navigation">
-        <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="bucketlist.html">Bucket List</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="references.html">References</a></li>
-        </ul>
-      </nav>
-    </div>
+    <nav>
+      <a href="index.html" class="nav-logo">Utah Vacation Planner</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="bucketlist.html">Bucket List</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="page-main">
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Utah Bucket List Builder</h1>
-        <p>Add Utah parks and temples to your bucket list by region.</p>
-        <a href="bucketlist.html" class="btn">View My Bucket List</a>
-      </div>
-    </section>
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero banner for Utah Vacation Planner">
+    <img
+      class="hero-img"
+      src=""
+      alt="a river running through a canyon surrounded by mountains"
+    />
+    <div class="hero-content">
+      <h1>Explore the Beauty of Utah</h1>
+      <p>From towering red rock canyons to serene mountain lakes, Utah offers some of the most spectacular scenery on Earth. Start planning your adventure today.</p>
+      <a href="bucketlist.html" class="btn">Build Your Bucket List</a>
 
-    <section class="option-section">
-      <h2>--------- Northern Utah ---------</h2>
-      <ul class="option-list">
-        <li class="option-item">
-          <span class="option-name">Antelope Island State Park</span>
-          <button type="button" class="btn-add" data-name="Antelope Island State Park" data-type="State Park" data-region="Northern">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">Bear Lake State Park</span>
-          <button type="button" class="btn-add" data-name="Bear Lake State Park" data-type="State Park" data-region="Northern">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">Great Salt Lake State Park</span>
-          <button type="button" class="btn-add" data-name="Great Salt Lake State Park" data-type="State Park" data-region="Northern">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">Logan Utah Temple</span>
-          <button type="button" class="btn-add" data-name="Logan Utah Temple" data-type="Temple" data-region="Northern">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">Ogden Utah Temple</span>
-          <button type="button" class="btn-add" data-name="Ogden Utah Temple" data-type="Temple" data-region="Northern">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">Payson Utah Temple</span>
-          <button type="button" class="btn-add" data-name="Payson Utah Temple" data-type="Temple" data-region="Northern">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">Vernal Utah Temple</span>
-          <button type="button" class="btn-add" data-name="Vernal Utah Temple" data-type="Temple" data-region="Northern">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">Wasatch Mountain State Park</span>
-          <button type="button" class="btn-add" data-name="Wasatch Mountain State Park" data-type="State Park" data-region="Northern">Add</button>
-        </li>
-      </ul>
-    </section>
+    </div>
+  </section>
 
-    <section class="option-section">
-      <h2>--------- Central Utah ---------</h2>
-      <ul class="option-list">
-        <li class="option-item">
-          <span class="option-name">Capitol Reef National Park</span>
-          <button type="button" class="btn-add" data-name="Capitol Reef National Park" data-type="National Park" data-region="Central">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">Goblin Valley State Park</span>
-          <button type="button" class="btn-add" data-name="Goblin Valley State Park" data-type="State Park" data-region="Central">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">Yuba State Park</span>
-          <button type="button" class="btn-add" data-name="Yuba State Park" data-type="State Park" data-region="Central">Add</button>
-        </li>
-      </ul>
-    </section>
+  <!-- QUICK FACTS -->
+  <section class="section" aria-labelledby="facts-heading">
+    <h2 class="section-title" id="facts-heading">Utah by the Numbers</h2>
+    <p class="section-subtitle">What makes the Beehive State extraordinary</p>
+    <div class="facts-grid" id="facts-grid">
+      <!-- injected by JS -->
+    </div>
+  </section>
 
-    <section class="option-section">
-      <h2>--------- Southern Utah ---------</h2>
-      <ul class="option-list">
-        <li class="option-item">
-          <span class="option-name">Arches National Park</span>
-          <button type="button" class="btn-add" data-name="Arches National Park" data-type="National Park" data-region="Southern">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">Bryce Canyon National Park</span>
-          <button type="button" class="btn-add" data-name="Bryce Canyon National Park" data-type="National Park" data-region="Southern">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">Canyonlands National Park</span>
-          <button type="button" class="btn-add" data-name="Canyonlands National Park" data-type="National Park" data-region="Southern">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">Dead Horse Point State Park</span>
-          <button type="button" class="btn-add" data-name="Dead Horse Point State Park" data-type="State Park" data-region="Southern">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">Kodachrome Basin State Park</span>
-          <button type="button" class="btn-add" data-name="Kodachrome Basin State Park" data-type="State Park" data-region="Southern">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">Snow Canyon State Park</span>
-          <button type="button" class="btn-add" data-name="Snow Canyon State Park" data-type="State Park" data-region="Southern">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">St. George Utah Temple</span>
-          <button type="button" class="btn-add" data-name="St. George Utah Temple" data-type="Temple" data-region="Southern">Add</button>
-        </li>
-        <li class="option-item">
-          <span class="option-name">Zion National Park</span>
-          <button type="button" class="btn-add" data-name="Zion National Park" data-type="National Park" data-region="Southern">Add</button>
-        </li>
-      </ul>
-    </section>
-  </main>
+  <!-- CALL TO ACTION -->
+  <section class="section" style="text-align:center; padding-bottom: 3rem;" aria-label="Call to action">
+    <h2 class="section-title" style="margin-bottom:0.5rem;">Ready to Plan Your Trip?</h2>
+    <p style="color:var(--secondary); margin-bottom:1.5rem;">Browse parks and temples by region, save your favorites, and share your experience.</p>
+    <a href="bucketlist.html" class="btn" style="margin-right:1rem;">Explore the Bucket List</a>
+    <a href="reviews.html" class="btn btn-outline">Leave a Review</a>
+  </section>
 
+  <!-- FOOTER -->
   <footer>
-    <p>&copy; 2026 Utah Vacation Planner | WDD 131</p>
-    <p><a href="references.html">References</a></p>
+    <p>&copy; 2026 Utah Vacation Planner - WDD 131 - <a href="references.html">References</a></p>
   </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
